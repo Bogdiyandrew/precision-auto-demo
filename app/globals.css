@@ -1,40 +1,60 @@
 @import "tailwindcss";
 
-/* 1. Definirea paletei de culori și a fonturilor ca variabile CSS */
+/* 1. Paleta de culori rafinată și variabile pentru efecte */
 @layer base {
   :root {
-    --background: #111827; /* Gri-albăstrui foarte închis (bg-gray-900) */
-    --foreground: #F9FAFB; /* Alb-gri (text-gray-50) */
-    --primary-accent: #3B82F6; /* Albastru electric (blue-500) */
-    --secondary-accent: #4B5563; /* Gri neutru (gray-600) */
+    --background: oklch(12.5% 0.02 250); /* Negru-albăstrui profund */
+    --foreground: oklch(95% 0.01 250);   /* Alb-gri deschis */
     
-    /* Vom defini variabilele pentru fonturi în layout.tsx */
+    --primary-accent: oklch(60% 0.25 250); /* Albastru electric vibrant */
+    --secondary-accent: oklch(85% 0.15 290); /* Un cyan/mov subtil pentru accente */
+
     --font-exo2: 'Exo 2', sans-serif;
     --font-inter: 'Inter', sans-serif;
   }
 }
 
-/* 2. Stilurile de bază pentru întreaga pagină */
+/* Animația pentru fundalul "Aurora" */
+@keyframes aurora {
+  from {
+    background-position: 50% 50%, 50% 50%;
+  }
+  to {
+    background-position: 350% 50%, 350% 50%;
+  }
+}
+
+/* 2. Stiluri de bază, inclusiv noul fundal animat */
 @layer base {
+  html {
+    scroll-behavior: smooth; /* Activează smooth scroll! */
+  }
   body {
     background-color: var(--background);
     color: var(--foreground);
     font-family: var(--font-inter);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    
+    /* Efectul Aurora - un fundal high-tech, subtil și dinamic */
+    position: relative;
+    background-image: 
+      radial-gradient(ellipse 80% 80% at 20% 40%, oklch(60% 0.25 250 / 0.15), transparent),
+      radial-gradient(ellipse 80% 80% at 80% 50%, oklch(85% 0.15 290 / 0.1), transparent);
+    background-size: 100% 100%;
+    animation: aurora 20s linear infinite;
   }
   
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-exo2);
     font-weight: 700;
-    color: #ffffff;
+    color: oklch(100% 0 0); /* Alb pur pentru titluri */
+    letter-spacing: -0.02em; /* Spațiere mai strânsă pentru un look modern */
   }
-}
 
-/* 3. NOU: Clasa pentru fundalul de grilă din Hero Section */
-.hero-grid-background {
-    background-image: linear-gradient(to right, rgba(59, 130, 246, 0.1) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(59, 130, 246, 0.1) 1px, transparent 1px);
-    background-size: 40px 40px;
-    background-position: -1px -1px;
+  /* Stil custom pentru selecția textului */
+  ::selection {
+    background-color: var(--primary-accent);
+    color: var(--background);
+  }
 }
