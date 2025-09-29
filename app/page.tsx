@@ -20,7 +20,6 @@ import {
     ArrowRight,
     CheckCircle,
     Timer,
-    Target,
     Gauge,
     Calendar,
     Clock,
@@ -752,7 +751,7 @@ const TestimonialCard = ({ name, text, rating }: { name: string; text: string; r
         <Star key={i} className="w-5 h-5 text-yellow-400 fill-current" />
       ))}
     </div>
-    <p className="text-gray-300 mb-6 leading-relaxed italic">"{text}"</p>
+    <p className="text-gray-300 mb-6 leading-relaxed italic">&quot;{text}&quot;</p>
     <div className="flex items-center gap-3">
       <div className="h-14 w-14 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center text-white font-bold shadow-md">
         {name.charAt(0)}
