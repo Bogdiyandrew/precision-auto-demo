@@ -1,6 +1,7 @@
 "use client";
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { 
   Facebook, 
@@ -45,19 +46,13 @@ const Footer = () => {
           >
             {/* Enhanced Logo */}
             <Link href="/" className="inline-flex items-center gap-3 group">
-              <motion.div 
-                className="relative w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-400 rounded-2xl flex items-center justify-center overflow-hidden"
-                whileHover={{ rotate: 360, scale: 1.1 }}
-                transition={{ duration: 0.6 }}
-              >
-                <Wrench size={24} className="text-white" />
-                <motion.div 
-                  className="absolute inset-0 bg-white/20 rounded-2xl"
-                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0, 0.5] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                />
-              </motion.div>
-              
+              <Image 
+                src="/logo.png" 
+                alt="Precision Auto Logo" 
+                width={48} 
+                height={48} 
+                className="rounded-lg"
+              />
               <div>
                 <h3 className="text-2xl font-bold text-white group-hover:text-gradient transition-all duration-300">
                   Precision Auto Garage

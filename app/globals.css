@@ -58,3 +58,65 @@
     color: var(--background);
   }
 }
+
+/* Glassmorphism utility */
+.glass-effect {
+  background: oklch(20% 0.05 250 / 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+}
+
+/* Scrollbar custom */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary-accent);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: oklch(60% 0.3 250);
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Micro-animations */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 0.6s ease forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 0.8s ease forwards;
+}
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-scale {
+  opacity: 0;
+  transform: scale(0.95);
+  animation: fadeScale 0.6s ease forwards;
+}
+@keyframes fadeScale {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

@@ -19,6 +19,9 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Precision Auto Garage - Service Auto Modern",
   description: "Servicii de diagnoză, întreținere și reparații la cele mai înalte standarde.",
+  icons: {
+    icon: '/favicon.png',
+  },
 };
 
 export default function RootLayout({
