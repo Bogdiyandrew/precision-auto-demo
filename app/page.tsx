@@ -6,7 +6,6 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import {
   Wrench,
-  Cog,
   ShieldCheck,
   Users,
   BadgeCheck,
@@ -16,27 +15,16 @@ import {
   Zap,
   Settings,
   Star,
-  ArrowRight,
   CheckCircle,
   Timer,
   Gauge,
   Calendar,
   Clock,
-  Award,
-  TrendingUp,
   Shield,
   Sparkles,
   Car,
-  Send,
   SendHorizontal
 } from 'lucide-react';
-
-// --- Imagini Galerie (Asigură-te că există în folderul /public) ---
-const galleryImages = [
-  { id: 1, src: "/1.png", alt: "Atelier service auto high-tech" },
-  { id: 2, src: "/2.png", alt: "Mecanic specialist motor" },
-  { id: 3, src: "/3.png", alt: "Stație ITP și diagnoză" },
-];
 
 // --- Variante Animații (Optimizate pentru fluiditate) ---
 const containerVariants: Variants = {
@@ -62,6 +50,48 @@ const itemVariants: Variants = {
     transition: springTransition,
   },
 };
+
+// --- INTERFEȚE TYPESCRIPT (Rezolvă erorile de "any") ---
+
+interface SectionHeaderProps {
+  icon: React.ReactNode;
+  subtitle: string;
+  title: string;
+  description: string;
+}
+
+interface ServiceCardProps {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+  price: string;
+  features: string[];
+}
+
+interface StatItemProps {
+  number: string;
+  label: string;
+}
+
+interface FeatureRowProps {
+  icon: React.ReactNode;
+  title: string;
+  text: string;
+}
+
+interface TestimonialCardProps {
+  name: string;
+  role: string;
+  text: string;
+  stars: number;
+}
+
+interface ContactDetailProps {
+  icon: React.ReactNode;
+  title: string;
+  content: string;
+  action?: string; // opțional
+}
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -125,7 +155,6 @@ export default function Home() {
             animate={isLoaded ? "visible" : "hidden"}
             className="flex flex-col items-center max-w-5xl mx-auto"
           >
-            {/* AICI a fost eliminată componenta cu "Service Auto Premium • Mioveni" */}
 
             <motion.h1
               variants={itemVariants}
@@ -459,7 +488,7 @@ export default function Home() {
 /* --- SUB-COMPONENTE RAFINATE PENTRU COD CURAT --- */
 
 // 1. Header Secțiune Reutilizabil
-const SectionHeader = ({ icon, subtitle, title, description }: any) => (
+const SectionHeader = ({ icon, subtitle, title, description }: SectionHeaderProps) => (
   <div className="text-center mb-16 max-w-3xl mx-auto">
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -492,7 +521,7 @@ const SectionHeader = ({ icon, subtitle, title, description }: any) => (
 );
 
 // 2. Card Serviciu cu Tech Border
-const ServiceCard = ({ icon, title, desc, price, features }: any) => (
+const ServiceCard = ({ icon, title, desc, price, features }: ServiceCardProps) => (
   <motion.div
     variants={itemVariants}
     className="group relative p-8 rounded-2xl tech-border glass-effect hover:bg-white/5 transition-all duration-300"
@@ -518,7 +547,7 @@ const ServiceCard = ({ icon, title, desc, price, features }: any) => (
 );
 
 // 3. Stat Item Hero
-const StatItem = ({ number, label }: any) => (
+const StatItem = ({ number, label }: StatItemProps) => (
   <div className="text-center">
     <div className="text-2xl md:text-3xl font-bold text-white mb-1">{number}</div>
     <div className="text-xs text-gray-400 uppercase tracking-wider">{label}</div>
@@ -526,7 +555,7 @@ const StatItem = ({ number, label }: any) => (
 );
 
 // 4. Feature Row (De ce noi)
-const FeatureRow = ({ icon, title, text }: any) => (
+const FeatureRow = ({ icon, title, text }: FeatureRowProps) => (
   <div className="flex gap-4">
     <div className="mt-1 flex-shrink-0 w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/10">
       {icon}
@@ -539,12 +568,12 @@ const FeatureRow = ({ icon, title, text }: any) => (
 );
 
 // 5. Testimonial Card
-const TestimonialCard = ({ name, role, text, stars }: any) => (
+const TestimonialCard = ({ name, role, text, stars }: TestimonialCardProps) => (
   <div className="p-8 rounded-2xl bg-[var(--background)] border border-white/5 shadow-xl">
     <div className="flex gap-1 mb-4 text-yellow-500">
       {[...Array(stars)].map((_, i) => <Star key={i} size={16} fill="currentColor" />)}
     </div>
-    <p className="text-gray-300 italic mb-6">"{text}"</p>
+    <p className="text-gray-300 italic mb-6">&quot;{text}&quot;</p>
     <div className="flex items-center gap-3">
       <div className="w-10 h-10 rounded-full bg-gradient-to-br from-blue-500 to-cyan-400 flex items-center justify-center font-bold text-white">
         {name.charAt(0)}
@@ -558,7 +587,7 @@ const TestimonialCard = ({ name, role, text, stars }: any) => (
 );
 
 // 6. Contact Detail
-const ContactDetail = ({ icon, title, content, action }: any) => (
+const ContactDetail = ({ icon, title, content, action }: ContactDetailProps) => (
   <div className="flex items-center gap-4 group">
     <div className="w-12 h-12 rounded-full glass-effect flex items-center justify-center text-blue-400 group-hover:scale-110 transition-transform">
       {icon}
@@ -591,7 +620,7 @@ const BookingForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
-      <h3 className="text-2xl font-bold mb-6">Formular</h3>
+      <h3 className="text-2xl font-bold mb-6">Formular Rapid</h3>
 
       <div className="grid grid-cols-2 gap-4">
         <div className="space-y-1">
@@ -610,7 +639,7 @@ const BookingForm = () => {
       </div>
 
       <div className="space-y-1">
-        <label className="text-xs text-gray-400 ml-1">Tip serviciu</label>
+        <label className="text-xs text-gray-400 ml-1">Tip Serviciu</label>
         <select className={inputClasses}>
           <option>Vreau o Revizie</option>
           <option>Problemă Mecanică</option>
@@ -628,9 +657,9 @@ const BookingForm = () => {
       <button
         type="submit"
         disabled={loading}
-        className="w-full btn-primary mt-4 py-4 rounded-xl font-bold text-white flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-blue-500/20 transition-all cursor-pointer"
+        className="w-full btn-primary mt-4 py-4 rounded-xl font-bold text-white flex items-center justify-center gap-2 hover:shadow-lg hover:shadow-blue-500/20 transition-all"
       >
-        {loading ? <span className="animate-spin">⌛</span> : <><SendHorizontal size={18} /> Trimite cererea</>}
+        {loading ? <span className="animate-spin">⌛</span> : <><SendHorizontal size={18} /> Trimite Cererea</>}
       </button>
       <p className="text-xs text-center text-gray-500 mt-4">
         Prin trimiterea formularului ești de acord cu prelucrarea datelor.
